@@ -1,10 +1,13 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Windows.Forms;
 
 namespace GreenLifeStore.Forms
 {
     public partial class RegisterForm : BaseForm
     {
+
+        private string connectionString = "server=localhost;database=greenlife;uid=root;pwd=1234;";
 
         private LoginForm loginForm;
 
@@ -36,8 +39,54 @@ namespace GreenLifeStore.Forms
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            string name = txtName.Text.Trim();
+            string email = txtEmail.Text.Trim();
+            string password = txtPassword.Text;
+            string confirmPassword = txtConfirmPassword.Text;
 
+            if (string.IsNullOrEmpty(name) ||
+                string.IsNullOrEmpty(email) ||
+                string.IsNullOrEmpty(password) ||
+                string.IsNullOrEmpty(confirmPassword))
+            {
+                MessageBox.Show("All fields are required.");
+                return;
+            }
+
+            if (password != confirmPassword)
+            {
+                MessageBox.Show("Passwords do not match.");
+                return;
+            }
+
+            try
+            {
+                using (MySqlConnection connection =
+                       new MySqlConnection(connectionString))
+                {
+                    string query =
+                        "INSERT INTO customers (name, email, password) " +
+                        "VALUES (@name, @email, @password)";
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@password", password);
+
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Registration successful. Please login.");
+                loginForm.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Registration Error: " + ex.Message);
+            }
         }
+
 
         private void btnBackToLogin_Click(object sender, EventArgs e)
         {
