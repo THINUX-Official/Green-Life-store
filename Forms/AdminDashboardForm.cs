@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GreenLifeStore.Forms
@@ -56,7 +49,7 @@ namespace GreenLifeStore.Forms
 
         private void btnManageCustomers_Click(object sender, EventArgs e)
         {
-            ManageCustomersForm manageCustomersForm = new ManageCustomersForm(this); 
+            ManageCustomersForm manageCustomersForm = new ManageCustomersForm(this);
             manageCustomersForm.Show();
             this.Hide();
         }
