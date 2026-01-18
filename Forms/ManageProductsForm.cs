@@ -18,7 +18,7 @@ namespace GreenLifeStore.Forms
             this.adminDashboardForm = adminDashboardForm;
         }
 
-        private void LoadProducts()
+        public void LoadProducts()
         {
             try
             {
@@ -61,6 +61,13 @@ namespace GreenLifeStore.Forms
         private void ManageProductsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             ConfirmAndExit(e);
+        }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            AddProductForm addProductForm = new AddProductForm(this);
+            addProductForm.Show();
+            this.Hide();
         }
     }
 }

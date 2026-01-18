@@ -30,6 +30,7 @@
         {
             this.dgvProducts = new System.Windows.Forms.DataGridView();
             this.btnBack = new System.Windows.Forms.Button();
+            this.btnAddProduct = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,9 +41,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProducts.Location = new System.Drawing.Point(12, 12);
+            this.dgvProducts.Location = new System.Drawing.Point(12, 41);
             this.dgvProducts.Name = "dgvProducts";
-            this.dgvProducts.Size = new System.Drawing.Size(776, 397);
+            this.dgvProducts.Size = new System.Drawing.Size(776, 368);
             this.dgvProducts.TabIndex = 0;
             // 
             // btnBack
@@ -56,11 +57,23 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // btnAddProduct
+            // 
+            this.btnAddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddProduct.Location = new System.Drawing.Point(698, 12);
+            this.btnAddProduct.Name = "btnAddProduct";
+            this.btnAddProduct.Size = new System.Drawing.Size(90, 23);
+            this.btnAddProduct.TabIndex = 2;
+            this.btnAddProduct.Text = "+ Add Product";
+            this.btnAddProduct.UseVisualStyleBackColor = true;
+            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
+            // 
             // ManageProductsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnAddProduct);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.dgvProducts);
             this.Name = "ManageProductsForm";
@@ -76,5 +89,6 @@
 
         private System.Windows.Forms.DataGridView dgvProducts;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnAddProduct;
     }
 }
