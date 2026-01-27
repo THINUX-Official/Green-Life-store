@@ -45,13 +45,16 @@ namespace GreenLifeStore
 
         private bool AuthenticateAdmin(string username, string password)
         {
+
+            string hashedPassword = PasswordHasher.HashPassword(password);
+
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 string query = "SELECT admin_id FROM admins WHERE username = @username AND password = @password";
 
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@password", hashedPassword);
 
                 connection.Open();
                 return cmd.ExecuteScalar() != null;
