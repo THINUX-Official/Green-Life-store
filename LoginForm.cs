@@ -1,4 +1,5 @@
 ﻿using GreenLifeStore.Forms;
+using GreenLifeStore.Utils;
 using MySql.Data.MySqlClient;
 using System;
 using System.Windows.Forms;
@@ -59,17 +60,19 @@ namespace GreenLifeStore
 
         private int AuthenticateCustomer(string email, string password)
         {
+
+            string hashedPassword = PasswordHasher.HashPassword(password);
+
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 string query = "SELECT customer_id FROM customers WHERE email = @email AND password = @password";
 
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@password", hashedPassword);
 
                 connection.Open();
                 object result = cmd.ExecuteScalar();
-
                 return result == null ? -1 : Convert.ToInt32(result);
             }
         }

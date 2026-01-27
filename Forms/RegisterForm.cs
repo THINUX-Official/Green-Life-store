@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using GreenLifeStore.Utils;
+using MySql.Data.MySqlClient;
 using System;
 using System.Windows.Forms;
 
@@ -64,6 +65,8 @@ namespace GreenLifeStore.Forms
                 using (MySqlConnection connection =
                        new MySqlConnection(connectionString))
                 {
+                    string hashedPassword = PasswordHasher.HashPassword(password);
+
                     string query =
                         "INSERT INTO customers (name, email, password) " +
                         "VALUES (@name, @email, @password)";
@@ -71,7 +74,7 @@ namespace GreenLifeStore.Forms
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@email", email);
-                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@password", hashedPassword);
 
                     connection.Open();
                     cmd.ExecuteNonQuery();
