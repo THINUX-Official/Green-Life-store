@@ -154,7 +154,7 @@ namespace GreenLifeStore.Forms
 
         private void btnMyOrders_Click(object sender, EventArgs e)
         {
-            CustomerOrdersForm customerOrdersForm = new CustomerOrdersForm(this);
+            CustomerOrdersForm customerOrdersForm = new CustomerOrdersForm(this, customerId);
             customerOrdersForm.Show();
             this.Hide();
         }
