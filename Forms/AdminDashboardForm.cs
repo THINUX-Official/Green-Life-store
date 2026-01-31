@@ -106,5 +106,12 @@ namespace GreenLifeStore.Forms
                 Utils.ExceptionHandler.Handle(ex, "Failed to load dashboard statistics.");
             }
         }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            SalesReportForm salesReportForm = new SalesReportForm(this);
+            salesReportForm.Show();
+            this.Hide();
+        }
     }
 }
