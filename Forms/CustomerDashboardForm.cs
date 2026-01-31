@@ -196,11 +196,25 @@ namespace GreenLifeStore.Forms
             if (e.RowIndex < 0) return;
 
             var row = dgvProductList.Rows[e.RowIndex];
+
             int qty = Convert.ToInt32(row.Cells["quantity"].Value ?? 0);
+            int stock = Convert.ToInt32(row.Cells["stock_quantity"].Value);
 
             if (dgvProductList.Columns[e.ColumnIndex].Name == "btnPlus")
             {
-                qty++;
+                if (qty < stock)
+                {
+                    qty++;
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "Requested quantity exceeds available stock.",
+                        "Stock Limit",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                }
             }
             else if (dgvProductList.Columns[e.ColumnIndex].Name == "btnMinus")
             {
@@ -209,7 +223,6 @@ namespace GreenLifeStore.Forms
             }
 
             row.Cells["quantity"].Value = qty;
-
             RecalculateRowAndGrandTotal();
         }
 
