@@ -65,6 +65,7 @@
             this.dgvOrders.Name = "dgvOrders";
             this.dgvOrders.Size = new System.Drawing.Size(597, 592);
             this.dgvOrders.TabIndex = 7;
+            this.dgvOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrders_CellContentClick);
             this.dgvOrders.SelectionChanged += new System.EventHandler(this.dgvOrders_SelectionChanged);
             // 
             // dgvOrderItems

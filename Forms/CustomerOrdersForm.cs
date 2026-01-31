@@ -135,5 +135,10 @@ namespace GreenLifeStore.Forms
 
             LoadOrderItems(orderId);
         }
+
+        private void dgvOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
