@@ -251,9 +251,9 @@ namespace GreenLifeStore.Forms
                     {
                         // 1. Insert order
                         string orderQuery = @"
-                INSERT INTO orders (customer_id, total_amount, order_status)
-                VALUES (@customerId, @total, 'PLACED');
-                SELECT LAST_INSERT_ID();";
+                            INSERT INTO orders (customer_id, total_amount, order_status)
+                            VALUES (@customerId, @total, 'Pending');
+                            SELECT LAST_INSERT_ID();";
 
                         MySqlCommand orderCmd = new MySqlCommand(orderQuery, connection, tx);
                         orderCmd.Parameters.AddWithValue("@customerId", customerId);

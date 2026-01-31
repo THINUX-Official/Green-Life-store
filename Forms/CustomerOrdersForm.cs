@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -44,14 +45,14 @@ namespace GreenLifeStore.Forms
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     string query = @"
-            SELECT 
-                order_id,
-                order_date,
-                total_amount,
-                order_status
-            FROM orders
-            WHERE customer_id = @customerId
-            ORDER BY order_date DESC";
+                        SELECT 
+                            order_id,
+                            order_date,
+                            total_amount,
+                            order_status
+                        FROM orders
+                        WHERE customer_id = @customerId
+                        ORDER BY order_date DESC";
 
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     cmd.Parameters.AddWithValue("@customerId", customerId);
@@ -127,8 +128,13 @@ namespace GreenLifeStore.Forms
 
         private void dgvOrders_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvOrders.SelectedRows.Count == 0)
-                return;
+            if (dgvOrders.SelectedRows.Count == 0) return;
+
+            string status =
+                dgvOrders.SelectedRows[0].Cells["order_status"].Value.ToString();
+
+            btnCancelOrder.Enabled =
+                status == "Pending" || status == "Confirmed";
 
             int orderId = Convert.ToInt32(
                 dgvOrders.SelectedRows[0].Cells["order_id"].Value);
@@ -139,6 +145,97 @@ namespace GreenLifeStore.Forms
         private void dgvOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnCancelOrder_Click(object sender, EventArgs e)
+        {
+            int orderId = Convert.ToInt32(
+                dgvOrders.SelectedRows[0].Cells["order_id"].Value);
+
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to cancel this order?",
+                "Confirm Cancellation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                CancelOrder(orderId);
+                LoadCustomerOrders();
+            }
+        }
+
+        private void CancelOrder(int orderId)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                MySqlTransaction tx = conn.BeginTransaction();
+
+                try
+                {
+                    // 1. Get order items
+                    string itemQuery = @"
+                        SELECT product_id, quantity
+                        FROM order_items
+                        WHERE order_id = @orderId";
+
+                    MySqlCommand itemCmd = new MySqlCommand(itemQuery, conn, tx);
+                    itemCmd.Parameters.AddWithValue("@orderId", orderId);
+
+                    MySqlDataReader reader = itemCmd.ExecuteReader();
+
+                    var items = new List<(int ProductId, int Quantity)>();
+
+                    while (reader.Read())
+                    {
+                        items.Add((
+                            reader.GetInt32("product_id"),
+                            reader.GetInt32("quantity")
+                        ));
+                    }
+                    reader.Close();
+
+                    // 2. Restore stock
+                    foreach (var item in items)
+                    {
+                        string restoreQuery = @"
+                            UPDATE products
+                            SET stock_quantity = stock_quantity + @qty,
+                                modified_date = NOW()
+                            WHERE product_id = @productId";
+
+                        MySqlCommand restoreCmd =
+                            new MySqlCommand(restoreQuery, conn, tx);
+
+                        restoreCmd.Parameters.AddWithValue("@qty", item.Quantity);
+                        restoreCmd.Parameters.AddWithValue("@productId", item.ProductId);
+                        restoreCmd.ExecuteNonQuery();
+                    }
+
+                    LoadCustomerOrders();
+
+                    // 3. Update order status
+                    string cancelOrderQuery = @"
+                        UPDATE orders
+                        SET order_status = 'Cancelled'
+                        WHERE order_id = @orderId
+                        AND order_status IN ('Pending','Confirmed')";
+
+                    MySqlCommand cancelCmd =
+                        new MySqlCommand(cancelOrderQuery, conn, tx);
+
+                    cancelCmd.Parameters.AddWithValue("@orderId", orderId);
+                    cancelCmd.ExecuteNonQuery();
+
+                    tx.Commit();
+                }
+                catch
+                {
+                    tx.Rollback();
+                    throw;
+                }
+            }
         }
     }
 }
