@@ -25,15 +25,15 @@ namespace GreenLifeStore.Forms
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     string query = @"
-                SELECT 
-                    o.order_id,
-                    c.name AS customer_name,
-                    o.order_date,
-                    o.total_amount,
-                    o.order_status
-                FROM orders o
-                INNER JOIN customers c ON o.customer_id = c.customer_id
-                ORDER BY o.order_date DESC";
+                        SELECT 
+                            o.order_id,
+                            c.name AS customer_name,
+                            o.order_date,
+                            o.total_amount,
+                            o.order_status
+                        FROM orders o
+                        INNER JOIN customers c ON o.customer_id = c.customer_id
+                        ORDER BY o.order_date DESC";
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
                     DataTable dt = new DataTable();
@@ -62,15 +62,15 @@ namespace GreenLifeStore.Forms
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     string query = @"
-                SELECT
-                    p.product_name,
-                    oi.quantity,
-                    oi.unit_price,
-                    oi.discount,
-                    (oi.unit_price - (oi.unit_price * oi.discount / 100)) * oi.quantity AS line_total
-                FROM order_items oi
-                INNER JOIN products p ON oi.product_id = p.product_id
-                WHERE oi.order_id = @orderId";
+                        SELECT
+                            p.product_name,
+                            oi.quantity,
+                            oi.unit_price,
+                            oi.discount,
+                            (oi.unit_price - (oi.unit_price * oi.discount / 100)) * oi.quantity AS line_total
+                        FROM order_items oi
+                        INNER JOIN products p ON oi.product_id = p.product_id
+                        WHERE oi.order_id = @orderId";
 
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     cmd.Parameters.AddWithValue("@orderId", orderId);
@@ -116,11 +116,11 @@ namespace GreenLifeStore.Forms
         {
             cmbOrderStatus.Items.AddRange(new string[]
             {
-        "PLACED",
-        "PROCESSING",
-        "SHIPPED",
-        "DELIVERED",
-        "CANCELLED"
+                "PLACED",
+                "PROCESSING",
+                "SHIPPED",
+                "DELIVERED",
+                "CANCELLED"
             });
 
             LoadOrders();
@@ -151,9 +151,9 @@ namespace GreenLifeStore.Forms
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     string query = @"
-                UPDATE orders
-                SET order_status = @status
-                WHERE order_id = @orderId";
+                        UPDATE orders
+                        SET order_status = @status
+                        WHERE order_id = @orderId";
 
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     cmd.Parameters.AddWithValue("@status", newStatus);
@@ -182,11 +182,6 @@ namespace GreenLifeStore.Forms
         private void ManageOrdersForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             ConfirmAndExit(e);
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
