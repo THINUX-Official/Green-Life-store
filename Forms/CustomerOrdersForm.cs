@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using GreenLifeStore.Models;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -134,7 +135,7 @@ namespace GreenLifeStore.Forms
                 dgvOrders.SelectedRows[0].Cells["order_status"].Value.ToString();
 
             btnCancelOrder.Enabled =
-                status == "Pending" || status == "Confirmed";
+                status == OrderStatus.Pending.ToString() || status == OrderStatus.Confirmed.ToString();
 
             int orderId = Convert.ToInt32(
                 dgvOrders.SelectedRows[0].Cells["order_id"].Value);
