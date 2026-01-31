@@ -20,5 +20,11 @@ namespace GreenLifeStore.Utils
         {
             return int.TryParse(input, out _);
         }
+
+        public static bool IsValidContactNumber(string input)
+        {
+            return !string.IsNullOrWhiteSpace(input) &&
+                   Regex.IsMatch(input, @"^\d{7,15}$");
+        }
     }
 }

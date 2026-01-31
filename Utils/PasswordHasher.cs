@@ -22,5 +22,11 @@ namespace GreenLifeStore.Utils
                 return builder.ToString();
             }
         }
+
+        public static bool VerifyPassword(string inputPassword, string storedHash)
+        {
+            string inputHash = HashPassword(inputPassword);
+            return inputHash == storedHash;
+        }
     }
 }

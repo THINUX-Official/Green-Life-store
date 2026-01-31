@@ -38,6 +38,10 @@
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnBackToLogin = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtName
@@ -77,7 +81,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 67);
+            this.label3.Location = new System.Drawing.Point(12, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 13);
             this.label3.TabIndex = 5;
@@ -85,7 +89,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(115, 64);
+            this.txtPassword.Location = new System.Drawing.Point(115, 116);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(100, 20);
             this.txtPassword.TabIndex = 4;
@@ -94,7 +98,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 93);
+            this.label4.Location = new System.Drawing.Point(12, 145);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(97, 13);
             this.label4.TabIndex = 7;
@@ -102,7 +106,7 @@
             // 
             // txtConfirmPassword
             // 
-            this.txtConfirmPassword.Location = new System.Drawing.Point(115, 90);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(115, 142);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(100, 20);
             this.txtConfirmPassword.TabIndex = 6;
@@ -110,7 +114,7 @@
             // 
             // btnRegister
             // 
-            this.btnRegister.Location = new System.Drawing.Point(115, 116);
+            this.btnRegister.Location = new System.Drawing.Point(115, 168);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(100, 23);
             this.btnRegister.TabIndex = 8;
@@ -120,7 +124,7 @@
             // 
             // btnBackToLogin
             // 
-            this.btnBackToLogin.Location = new System.Drawing.Point(115, 145);
+            this.btnBackToLogin.Location = new System.Drawing.Point(115, 197);
             this.btnBackToLogin.Name = "btnBackToLogin";
             this.btnBackToLogin.Size = new System.Drawing.Size(100, 23);
             this.btnBackToLogin.TabIndex = 9;
@@ -128,11 +132,47 @@
             this.btnBackToLogin.UseVisualStyleBackColor = true;
             this.btnBackToLogin.Click += new System.EventHandler(this.btnBackToLogin_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 67);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Phone: ";
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Location = new System.Drawing.Point(115, 64);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(100, 20);
+            this.txtPhone.TabIndex = 10;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 93);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Address: ";
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Location = new System.Drawing.Point(115, 90);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(100, 20);
+            this.txtAddress.TabIndex = 12;
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtAddress);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.btnBackToLogin);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.label4);
@@ -167,5 +207,9 @@
         private System.Windows.Forms.TextBox txtConfirmPassword;
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Button btnBackToLogin;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtAddress;
     }
 }

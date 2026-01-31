@@ -1,6 +1,7 @@
 ﻿using GreenLifeStore.Utils;
 using MySql.Data.MySqlClient;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace GreenLifeStore.Forms
@@ -42,11 +43,21 @@ namespace GreenLifeStore.Forms
         {
             string name = txtName.Text.Trim();
             string email = txtEmail.Text.Trim();
+            string phone = txtPhone.Text.Trim();
+            string address = txtAddress.Text.Trim();
             string password = txtPassword.Text;
             string confirmPassword = txtConfirmPassword.Text;
 
+            if (!InputValidator.IsValidContactNumber(phone))
+            {
+                MessageBox.Show("Please enter a valid contact number.");
+                return;
+            }
+
             if (string.IsNullOrEmpty(name) ||
                 string.IsNullOrEmpty(email) ||
+                string.IsNullOrEmpty(phone) ||
+                string.IsNullOrEmpty(address) ||
                 string.IsNullOrEmpty(password) ||
                 string.IsNullOrEmpty(confirmPassword))
             {
@@ -62,18 +73,19 @@ namespace GreenLifeStore.Forms
 
             try
             {
-                using (MySqlConnection connection =
-                       new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     string hashedPassword = PasswordHasher.HashPassword(password);
 
                     string query =
-                        "INSERT INTO customers (name, email, password) " +
-                        "VALUES (@name, @email, @password)";
+                        "INSERT INTO customers (name, email, phone, address, password) " +
+                        "VALUES (@name, @email, @phone, @address, @password)";
 
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@phone", phone);
+                    cmd.Parameters.AddWithValue("@address", address);
                     cmd.Parameters.AddWithValue("@password", hashedPassword);
 
                     connection.Open();

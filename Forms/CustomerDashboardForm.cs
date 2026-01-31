@@ -142,7 +142,7 @@ namespace GreenLifeStore.Forms
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            ProfileForm profileForm = new ProfileForm(this);
+            ProfileForm profileForm = new ProfileForm(this, customerId);
             profileForm.Show();
             this.Hide();
         }
