@@ -28,82 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnLogout = new System.Windows.Forms.Button();
-            this.btnReports = new System.Windows.Forms.Button();
-            this.btnManageOrders = new System.Windows.Forms.Button();
-            this.btnManageCustomers = new System.Windows.Forms.Button();
-            this.btnManageProducts = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtProductInStock = new System.Windows.Forms.TextBox();
-            this.txtTotalSales = new System.Windows.Forms.TextBox();
-            this.txtActiveOrders = new System.Windows.Forms.TextBox();
+            this.lblStockCount = new System.Windows.Forms.Label();
+            this.lblActiveOrderCount = new System.Windows.Forms.Label();
+            this.lblSalesCount = new System.Windows.Forms.Label();
+            this.btnManageProducts = new System.Windows.Forms.Button();
+            this.btnManageCustomers = new System.Windows.Forms.Button();
+            this.btnManageOrders = new System.Windows.Forms.Button();
+            this.btnReports = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnLogout);
-            this.panel1.Controls.Add(this.btnReports);
-            this.panel1.Controls.Add(this.btnManageOrders);
-            this.panel1.Controls.Add(this.btnManageCustomers);
-            this.panel1.Controls.Add(this.btnManageProducts);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 426);
-            this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.Location = new System.Drawing.Point(3, 400);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(194, 23);
-            this.btnLogout.TabIndex = 4;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // btnReports
-            // 
-            this.btnReports.Location = new System.Drawing.Point(3, 90);
-            this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(194, 23);
-            this.btnReports.TabIndex = 3;
-            this.btnReports.Text = "Reports";
-            this.btnReports.UseVisualStyleBackColor = true;
-            // 
-            // btnManageOrders
-            // 
-            this.btnManageOrders.Location = new System.Drawing.Point(3, 61);
-            this.btnManageOrders.Name = "btnManageOrders";
-            this.btnManageOrders.Size = new System.Drawing.Size(194, 23);
-            this.btnManageOrders.TabIndex = 2;
-            this.btnManageOrders.Text = "Manage Orders";
-            this.btnManageOrders.UseVisualStyleBackColor = true;
-            this.btnManageOrders.Click += new System.EventHandler(this.btnManageOrders_Click);
-            // 
-            // btnManageCustomers
-            // 
-            this.btnManageCustomers.Location = new System.Drawing.Point(3, 32);
-            this.btnManageCustomers.Name = "btnManageCustomers";
-            this.btnManageCustomers.Size = new System.Drawing.Size(194, 23);
-            this.btnManageCustomers.TabIndex = 1;
-            this.btnManageCustomers.Text = "Manage Customers";
-            this.btnManageCustomers.UseVisualStyleBackColor = true;
-            this.btnManageCustomers.Click += new System.EventHandler(this.btnManageCustomers_Click);
-            // 
-            // btnManageProducts
-            // 
-            this.btnManageProducts.Location = new System.Drawing.Point(3, 3);
-            this.btnManageProducts.Name = "btnManageProducts";
-            this.btnManageProducts.Size = new System.Drawing.Size(194, 23);
-            this.btnManageProducts.TabIndex = 0;
-            this.btnManageProducts.Text = "Manage Products";
-            this.btnManageProducts.UseVisualStyleBackColor = true;
-            this.btnManageProducts.Click += new System.EventHandler(this.btnManageProducts_Click);
             // 
             // label2
             // 
@@ -132,36 +70,107 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Active Orders: ";
             // 
-            // txtProductInStock
+            // lblStockCount
             // 
-            this.txtProductInStock.Location = new System.Drawing.Point(316, 47);
-            this.txtProductInStock.Name = "txtProductInStock";
-            this.txtProductInStock.Size = new System.Drawing.Size(40, 20);
-            this.txtProductInStock.TabIndex = 5;
-            this.txtProductInStock.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.lblStockCount.AutoSize = true;
+            this.lblStockCount.BackColor = System.Drawing.SystemColors.Control;
+            this.lblStockCount.Location = new System.Drawing.Point(316, 49);
+            this.lblStockCount.Name = "lblStockCount";
+            this.lblStockCount.Size = new System.Drawing.Size(66, 13);
+            this.lblStockCount.TabIndex = 8;
+            this.lblStockCount.Text = "Stock Count";
             // 
-            // txtTotalSales
+            // lblActiveOrderCount
             // 
-            this.txtTotalSales.Location = new System.Drawing.Point(316, 15);
-            this.txtTotalSales.Name = "txtTotalSales";
-            this.txtTotalSales.Size = new System.Drawing.Size(40, 20);
-            this.txtTotalSales.TabIndex = 6;
+            this.lblActiveOrderCount.AutoSize = true;
+            this.lblActiveOrderCount.BackColor = System.Drawing.SystemColors.Control;
+            this.lblActiveOrderCount.Location = new System.Drawing.Point(316, 78);
+            this.lblActiveOrderCount.Name = "lblActiveOrderCount";
+            this.lblActiveOrderCount.Size = new System.Drawing.Size(71, 13);
+            this.lblActiveOrderCount.TabIndex = 9;
+            this.lblActiveOrderCount.Text = "Active Orders";
             // 
-            // txtActiveOrders
+            // lblSalesCount
             // 
-            this.txtActiveOrders.Location = new System.Drawing.Point(316, 76);
-            this.txtActiveOrders.Name = "txtActiveOrders";
-            this.txtActiveOrders.Size = new System.Drawing.Size(40, 20);
-            this.txtActiveOrders.TabIndex = 7;
+            this.lblSalesCount.AutoSize = true;
+            this.lblSalesCount.BackColor = System.Drawing.SystemColors.Control;
+            this.lblSalesCount.Location = new System.Drawing.Point(316, 20);
+            this.lblSalesCount.Name = "lblSalesCount";
+            this.lblSalesCount.Size = new System.Drawing.Size(64, 13);
+            this.lblSalesCount.TabIndex = 10;
+            this.lblSalesCount.Text = "Sales Count";
+            // 
+            // btnManageProducts
+            // 
+            this.btnManageProducts.Location = new System.Drawing.Point(3, 3);
+            this.btnManageProducts.Name = "btnManageProducts";
+            this.btnManageProducts.Size = new System.Drawing.Size(194, 23);
+            this.btnManageProducts.TabIndex = 0;
+            this.btnManageProducts.Text = "Manage Products";
+            this.btnManageProducts.UseVisualStyleBackColor = true;
+            this.btnManageProducts.Click += new System.EventHandler(this.btnManageProducts_Click);
+            // 
+            // btnManageCustomers
+            // 
+            this.btnManageCustomers.Location = new System.Drawing.Point(3, 32);
+            this.btnManageCustomers.Name = "btnManageCustomers";
+            this.btnManageCustomers.Size = new System.Drawing.Size(194, 23);
+            this.btnManageCustomers.TabIndex = 1;
+            this.btnManageCustomers.Text = "Manage Customers";
+            this.btnManageCustomers.UseVisualStyleBackColor = true;
+            this.btnManageCustomers.Click += new System.EventHandler(this.btnManageCustomers_Click);
+            // 
+            // btnManageOrders
+            // 
+            this.btnManageOrders.Location = new System.Drawing.Point(3, 61);
+            this.btnManageOrders.Name = "btnManageOrders";
+            this.btnManageOrders.Size = new System.Drawing.Size(194, 23);
+            this.btnManageOrders.TabIndex = 2;
+            this.btnManageOrders.Text = "Manage Orders";
+            this.btnManageOrders.UseVisualStyleBackColor = true;
+            this.btnManageOrders.Click += new System.EventHandler(this.btnManageOrders_Click);
+            // 
+            // btnReports
+            // 
+            this.btnReports.Location = new System.Drawing.Point(3, 90);
+            this.btnReports.Name = "btnReports";
+            this.btnReports.Size = new System.Drawing.Size(194, 23);
+            this.btnReports.TabIndex = 3;
+            this.btnReports.Text = "Reports";
+            this.btnReports.UseVisualStyleBackColor = true;
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLogout.Location = new System.Drawing.Point(3, 400);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(194, 23);
+            this.btnLogout.TabIndex = 4;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnLogout);
+            this.panel1.Controls.Add(this.btnReports);
+            this.panel1.Controls.Add(this.btnManageOrders);
+            this.panel1.Controls.Add(this.btnManageCustomers);
+            this.panel1.Controls.Add(this.btnManageProducts);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 426);
+            this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // AdminDashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.txtActiveOrders);
-            this.Controls.Add(this.txtTotalSales);
-            this.Controls.Add(this.txtProductInStock);
+            this.Controls.Add(this.lblSalesCount);
+            this.Controls.Add(this.lblActiveOrderCount);
+            this.Controls.Add(this.lblStockCount);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -177,18 +186,17 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblStockCount;
+        private System.Windows.Forms.Label lblActiveOrderCount;
+        private System.Windows.Forms.Label lblSalesCount;
         private System.Windows.Forms.Button btnManageProducts;
         private System.Windows.Forms.Button btnManageCustomers;
         private System.Windows.Forms.Button btnManageOrders;
         private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtProductInStock;
-        private System.Windows.Forms.TextBox txtTotalSales;
-        private System.Windows.Forms.TextBox txtActiveOrders;
+        private System.Windows.Forms.Panel panel1;
     }
 }
