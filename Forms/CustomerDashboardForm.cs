@@ -10,6 +10,8 @@ namespace GreenLifeStore.Forms
     public partial class CustomerDashboardForm : BaseForm
     {
 
+        private DataTable productTable;
+
         private List<CartItem> cart = new List<CartItem>();
 
         private string connectionString = "server=localhost;database=greenlife;uid=root;pwd=1234;";
@@ -85,7 +87,6 @@ namespace GreenLifeStore.Forms
             txtTotal.Text = grandTotal.ToString("0.00");
         }
 
-
         private void LoadProducts()
         {
             try
@@ -105,12 +106,11 @@ namespace GreenLifeStore.Forms
 
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
 
-                    connection.Open();
-                    adapter.Fill(dt);
-
-                    dgvProductList.DataSource = dt;
+                    // for filtering and loading purposes 
+                    productTable = new DataTable();
+                    adapter.Fill(productTable);
+                    dgvProductList.DataSource = productTable;
 
                     // Hide internal identifier
                     dgvProductList.Columns["product_id"].Visible = false;
@@ -133,6 +133,38 @@ namespace GreenLifeStore.Forms
             }
         }
 
+        private void ApplyProductFilters()
+        {
+            if (productTable == null) return;
+
+            List<string> filters = new List<string>();
+
+            // Product name filter
+            if (!string.IsNullOrWhiteSpace(txtSearchByName.Text))
+            {
+                filters.Add($"product_name LIKE '%{txtSearchByName.Text.Replace("'", "''")}%'");
+            }
+
+            // Category filter
+            if (!string.IsNullOrWhiteSpace(txtCategory.Text))
+            {
+                filters.Add($"category LIKE '%{txtCategory.Text.Replace("'", "''")}%'");
+            }
+
+            // Maximum price filter
+            if (decimal.TryParse(txtMaxPrice.Text, out decimal maxPrice))
+            {
+                filters.Add($"price <= {maxPrice}");
+            }
+
+            // Minimum price filter
+            if (decimal.TryParse(txtMinPrice.Text, out decimal minPrice))
+            {
+                filters.Add($"price >= {minPrice}");
+            }
+
+            productTable.DefaultView.RowFilter = string.Join(" AND ", filters);
+        }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
@@ -311,6 +343,24 @@ namespace GreenLifeStore.Forms
             return items;
         }
 
+        private void txtSearchByName_TextChanged(object sender, EventArgs e)
+        {
+            ApplyProductFilters();
+        }
 
+        private void txtCategory_TextChanged(object sender, EventArgs e)
+        {
+            ApplyProductFilters();
+        }
+
+        private void txtMaxPrice_TextChanged(object sender, EventArgs e)
+        {
+            ApplyProductFilters();
+        }
+
+        private void txtMinPrice_TextChanged(object sender, EventArgs e)
+        {
+            ApplyProductFilters();
+        }
     }
 }
