@@ -1,0 +1,14 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build outputs
+bin/
+obj/
+
+# NuGet packages (optional if restoring via NuGet)
+packages/
+
+# Logs and temp files
+*.log
