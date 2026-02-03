@@ -9,8 +9,6 @@ namespace GreenLifeStore.Forms
     public partial class RegisterForm : BaseForm
     {
 
-        private string connectionString = "server=localhost;database=greenlife;uid=root;pwd=1234;";
-
         private LoginForm loginForm;
 
         public RegisterForm(LoginForm loginForm)
@@ -73,7 +71,7 @@ namespace GreenLifeStore.Forms
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     string hashedPassword = PasswordHasher.HashPassword(password);
 

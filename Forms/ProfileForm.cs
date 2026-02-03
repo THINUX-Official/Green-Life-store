@@ -9,8 +9,6 @@ namespace GreenLifeStore.Forms
     {
         private int customerId;
 
-        private string connectionString = "server=localhost;database=greenlife;uid=root;pwd=1234;";
-
         private CustomerDashboardForm customerDashboardForm;
 
         public ProfileForm(CustomerDashboardForm customerDashboardForm, int customerId)
@@ -38,7 +36,7 @@ namespace GreenLifeStore.Forms
 
         private void LoadCustomerProfile()
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
             {
                 string query = @"
             SELECT name, email, phone, address
@@ -96,7 +94,7 @@ namespace GreenLifeStore.Forms
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     connection.Open();
 

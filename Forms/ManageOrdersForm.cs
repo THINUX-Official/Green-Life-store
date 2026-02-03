@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using GreenLifeStore.Utils;
+using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -10,8 +11,6 @@ namespace GreenLifeStore.Forms
 
         private AdminDashboardForm adminDashboardForm;
 
-        private string connectionString = "server=localhost;database=greenlife;uid=root;pwd=1234;";
-
         public ManageOrdersForm(AdminDashboardForm adminDashboardForm)
         {
             InitializeComponent();
@@ -22,7 +21,7 @@ namespace GreenLifeStore.Forms
         {
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     string query = @"
                         SELECT 
@@ -59,7 +58,7 @@ namespace GreenLifeStore.Forms
         {
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     string query = @"
                         SELECT
@@ -148,7 +147,7 @@ namespace GreenLifeStore.Forms
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     string query = @"
                         UPDATE orders

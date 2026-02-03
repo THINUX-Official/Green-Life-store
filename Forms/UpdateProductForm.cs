@@ -10,8 +10,6 @@ namespace GreenLifeStore.Forms
     {
         private int selectedProductId; // store product_id to use in update query
 
-        private string connectionString = "server=localhost;database=greenlife;uid=root;pwd=1234;";
-
         private ManageProductsForm manageProductsForm;
 
         public UpdateProductForm(
@@ -86,7 +84,7 @@ namespace GreenLifeStore.Forms
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     string query = @"
                         UPDATE products 

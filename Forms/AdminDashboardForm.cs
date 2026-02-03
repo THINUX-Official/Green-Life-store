@@ -1,13 +1,11 @@
-﻿using System;
+﻿using GreenLifeStore.Utils;
+using System;
 using System.Windows.Forms;
 
 namespace GreenLifeStore.Forms
 {
     public partial class AdminDashboardForm : BaseForm
     {
-
-        private string connectionString = "server=localhost;database=greenlife;uid=root;pwd=1234;";
-
 
         private LoginForm loginForm;
 
@@ -63,7 +61,7 @@ namespace GreenLifeStore.Forms
         {
             try
             {
-                using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(connectionString))
+                using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     connection.Open();
 

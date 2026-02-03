@@ -1,4 +1,5 @@
 ﻿using GreenLifeStore.Models;
+using GreenLifeStore.Utils;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,6 @@ namespace GreenLifeStore.Forms
 {
     public partial class CustomerOrdersForm : BaseForm
     {
-
-        private string connectionString = "server=localhost;database=greenlife;uid=root;pwd=1234;";
 
         private int customerId;
 
@@ -43,7 +42,7 @@ namespace GreenLifeStore.Forms
         {
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     string query = @"
                         SELECT 
@@ -87,7 +86,7 @@ namespace GreenLifeStore.Forms
         {
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     string query = @"
                 SELECT
@@ -168,7 +167,7 @@ namespace GreenLifeStore.Forms
 
         private void CancelOrder(int orderId)
         {
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            using (MySqlConnection conn = new MySqlConnection(DatabaseConfig.ConnectionString))
             {
                 conn.Open();
                 MySqlTransaction tx = conn.BeginTransaction();

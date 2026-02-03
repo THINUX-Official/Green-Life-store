@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using GreenLifeStore.Utils;
+using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -10,8 +11,6 @@ namespace GreenLifeStore.Forms
 
         private AdminDashboardForm adminDashboardForm;
 
-        private string connectionString = "server=localhost;database=greenlife;uid=root;pwd=1234;";
-
         public ManageCustomersForm(AdminDashboardForm adminDashboardForm)
         {
             InitializeComponent();
@@ -22,7 +21,7 @@ namespace GreenLifeStore.Forms
         {
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     string query = "SELECT customer_id, name, email, phone, address from customers WHERE active_status = 1";
 
@@ -82,7 +81,7 @@ namespace GreenLifeStore.Forms
 
             int customerId = Convert.ToInt32(dgvCustomers.SelectedRows[0].Cells["customer_id"].Value);
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
             {
                 string query = @"
                     UPDATE customers 

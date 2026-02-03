@@ -1,4 +1,5 @@
 ﻿using GreenLifeStore.Models;
+using GreenLifeStore.Utils;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
@@ -11,8 +12,6 @@ namespace GreenLifeStore.Forms
 
         private AdminDashboardForm adminDashboardForm;
 
-        private string connectionString = "server=localhost;database=greenlife;uid=root;pwd=1234;";
-
         public ManageProductsForm(AdminDashboardForm adminDashboardForm)
         {
             InitializeComponent();
@@ -23,7 +22,7 @@ namespace GreenLifeStore.Forms
         {
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     string query = "SELECT product_id, product_name, category, price, stock_quantity, supplier, discount FROM products WHERE active_status = 1";
 
@@ -90,7 +89,7 @@ namespace GreenLifeStore.Forms
 
             int productId = Convert.ToInt32(dgvProducts.SelectedRows[0].Cells["product_id"].Value);
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
             {
                 string query = @"
                     UPDATE products 

@@ -201,6 +201,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\DatabaseConfig.cs" />
     <Compile Include="Utils\ExceptionHandler.cs" />
     <Compile Include="Utils\InputValidator.cs" />
     <Compile Include="Utils\PasswordHasher.cs" />
@@ -273,6 +274,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Repositories\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
