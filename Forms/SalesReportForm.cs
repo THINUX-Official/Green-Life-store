@@ -10,8 +10,6 @@ namespace GreenLifeStore.Forms
     public partial class SalesReportForm : BaseForm
     {
 
-        private string connectionString = "server=localhost;database=greenlife;uid=root;pwd=1234;";
-
         private AdminDashboardForm adminDashboardForm;
 
         public SalesReportForm(AdminDashboardForm adminDashboardForm)
@@ -43,7 +41,7 @@ namespace GreenLifeStore.Forms
         {
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     string query = @"
                         SELECT 
@@ -74,7 +72,7 @@ namespace GreenLifeStore.Forms
             try
             {
                 using (MySqlConnection connection =
-                       new MySqlConnection(connectionString))
+                       new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     string query = @"
                         SELECT 
@@ -111,7 +109,7 @@ namespace GreenLifeStore.Forms
             try
             {
                 using (MySqlConnection connection =
-                       new MySqlConnection(connectionString))
+                       new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     string query = @"
                         SELECT 

@@ -7,9 +7,6 @@ namespace GreenLifeStore.Forms
 {
     public partial class AddProductForm : BaseForm
     {
-
-        private string connectionString = "server=localhost;database=greenlife;uid=root;pwd=1234;";
-
         private ManageProductsForm manageProductsForm;
         public AddProductForm(ManageProductsForm manageProductsForm)
         {
@@ -98,7 +95,7 @@ namespace GreenLifeStore.Forms
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     string query =
                         "INSERT INTO products (product_name, category, price, stock_quantity, supplier, discount) " +

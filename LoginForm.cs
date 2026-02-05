@@ -9,8 +9,6 @@ namespace GreenLifeStore
     public partial class LoginForm : BaseForm
     {
 
-        private string connectionString = "server=localhost;database=greenlife;uid=root;pwd=1234;";
-
         public LoginForm()
         {
             InitializeComponent();
@@ -48,7 +46,7 @@ namespace GreenLifeStore
 
             string hashedPassword = PasswordHasher.HashPassword(password);
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
             {
                 string query = "SELECT admin_id FROM admins WHERE username = @username AND password = @password";
 
@@ -66,7 +64,7 @@ namespace GreenLifeStore
 
             string hashedPassword = PasswordHasher.HashPassword(password);
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
             {
                 string query = "SELECT customer_id FROM customers WHERE email = @email AND password = @password";
 

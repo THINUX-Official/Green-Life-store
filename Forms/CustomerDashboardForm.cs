@@ -1,4 +1,5 @@
 ﻿using GreenLifeStore.Models;
+using GreenLifeStore.Utils;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,6 @@ namespace GreenLifeStore.Forms
         private DataTable productTable;
 
         private List<CartItem> cart = new List<CartItem>();
-
-        private string connectionString = "server=localhost;database=greenlife;uid=root;pwd=1234;";
 
         private LoginForm loginForm;
         private int customerId;
@@ -91,7 +90,7 @@ namespace GreenLifeStore.Forms
         {
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     string query = @"
                 SELECT 
@@ -242,7 +241,7 @@ namespace GreenLifeStore.Forms
 
             try
             {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                using (MySqlConnection connection = new MySqlConnection(DatabaseConfig.ConnectionString))
                 {
                     connection.Open();
                     MySqlTransaction tx = connection.BeginTransaction();
